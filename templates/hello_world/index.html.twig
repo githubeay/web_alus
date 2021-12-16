@@ -9,7 +9,17 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {# <h1>Hello {{ controller_name }}! ✅</h1> #}
+    <h1>Hello Alus!</h1>
+    <h1>Hello {{ name }}!</h1>
+
+    <div class="form-example">
+        <form>
+            <label for="name">Enter your name: </label>
+            <input type="text" name="name" id="name" required>
+            <button class="favorite styled" type="submit">Go!</button>
+        </form>
+    </div>
 
     This friendly message is coming from:
     <ul>
