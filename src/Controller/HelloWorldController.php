@@ -17,11 +17,11 @@ class HelloWorldController extends AbstractController
     public function index(Request $request, EntityManagerInterface $em): Response
     {
         $post = new Post();
-        $post->setTitle('First Post');
-        $post->setContent('This is our first post');
+        // $post->setTitle('First Post');
+        // $post->setContent('This is our first post');
 
-        $em->persist($post);
-        $em->flush();
+        // $em->persist($post);
+        // $em->flush();
 
         $name = $request->query->get("name");
         if (!isset($name)){

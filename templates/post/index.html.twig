@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+
+<form action="" method="post">
+    <label for="title">Title:</label>
+    <input name="title" type="text">
+    <br>
+    <label for="">Content:</label>
+    <br>
+    <textarea name="content" id="" cols="30" rows="10"></textarea>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+{% for post in posts %}
+    <h1>{{post.title}}</h1><br>
+    <p>{{post.content}}</p><br>
+    {# Génération dynamique de route (utilise le 'name' de la route en controlleur) #}
+    <a href="{{path('post_delete', {'id': post.id})}}">Delete</a>
+    <hr>
+{% endfor %}
+
+{% endblock %}
