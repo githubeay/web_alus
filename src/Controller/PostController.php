@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Form\PostType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,11 +17,14 @@ class PostController extends AbstractController
      */
     public function index(Request $request, EntityManagerInterface $em): Response
     {
+        $post = new Post();
+        $form = $this->createForm(PostType::class, $post);
+        
+        
         $title = $request->request->get("title");
         $content = $request->request->get("content");
         
         if (isset($title) && $title!="") {
-            $post = new Post();
             $post->setTitle($title);
             $post->setContent($content);
 
@@ -33,6 +37,7 @@ class PostController extends AbstractController
         return $this->render('post/index.html.twig', [
             'controller_name' => 'PostController',
             'posts' => $posts,
+            'form' => $form->createView(),
         ]);
     }
 

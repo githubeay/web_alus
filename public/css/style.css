@@ -1,0 +1,12 @@
+p{
+    background-color: lightgray;
+    font-size: large;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.post-div{
+    border-color: grey;
+    border-style: double;
+    padding: 12px;padding-top: 0px;margin-bottom: 12px;border-radius: 12px;
+} 

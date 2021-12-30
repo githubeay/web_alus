@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<form action="" method="post">
+{# <form action="" method="post">
     <label for="title">Title:</label>
     <input name="title" type="text">
     <br>
@@ -13,14 +13,38 @@
     <textarea name="content" id="" cols="30" rows="10"></textarea>
     <br>
     <button type="submit">Submit</button>
-</form>
+</form> #}
 
+<div class="container">
+
+<h1>Add</h1>
+{# {{form(form)}} #}
+{{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.content) }}
+    {{ form_row(form.image) }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+{{ form_end(form) }}
+
+
+<h1>Posts</h1>
+<div class="alert alert-primary">
+    Bonjour !
+</div>
 {% for post in posts %}
-    <h1>{{post.title}}</h1><br>
-    <p>{{post.content}}</p><br>
-    {# Génération dynamique de route (utilise le 'name' de la route en controlleur) #}
-    <a href="{{path('post_delete', {'id': post.id})}}">Delete</a>
-    <hr>
+    <div class="post-div row">
+        <div class="col">
+            <div class="row"><h2>{{post.title}}</h2></div>
+            <div class="row"><p>{{post.content}}</p></div>
+            <div class="row">
+                {# Génération dynamique de route (utilise le 'name' de la route en controlleur) #}
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="{{path('post_delete', {'id': post.id})}}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
 {% endfor %}
+
+</div>
 
 {% endblock %}
