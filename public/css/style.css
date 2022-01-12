@@ -9,4 +9,8 @@ p{
     border-color: grey;
     border-style: double;
     padding: 12px;padding-top: 0px;margin-bottom: 12px;border-radius: 12px;
+}
+
+.post-image{
+    max-width: 128px;
 } 
