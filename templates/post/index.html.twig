@@ -15,8 +15,6 @@
     <button type="submit">Submit</button>
 </form> #}
 
-<div class="container">
-
 {% for message in app.flashes("success") %}
     <div class="alert alert-success" role="alert">
         A simple success alertcheck it out!
@@ -66,7 +64,5 @@
         </div>
     </div>
 {% endfor %}
-
-</div>
 
 {% endblock %}

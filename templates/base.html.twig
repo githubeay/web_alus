@@ -13,17 +13,24 @@
         {% endblock %}
     </head>
     <body>
-        {% for type, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="alert alert-{{type}} alert-dismissible fade show" role="alert">
-                    {{message}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+        {# Navbar #}
+        {% include "common/_navbar.html.twig" %}
+
+        <div class="container">
+            {# Messages flush #}
+            {% for type, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{type}} alert-dismissible fade show" role="alert">
+                        {{message}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
-        {% block body %}{% endblock %}
+            {# Block body #}
+            {% block body %}{% endblock %}
+        </div>
         {# Hello world #}
     </body>
 
