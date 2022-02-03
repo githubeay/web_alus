@@ -24,6 +24,7 @@ security:
                 # "login" is the name of the route created previously
                 login_path: login
                 check_path: login
+                default_target_path: post
             logout:
                 path: logout
                 # where to redirect after logout
@@ -41,4 +42,5 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: '^/login', roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: '^/signup', roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: '^/', roles: IS_AUTHENTICATED_FULLY }

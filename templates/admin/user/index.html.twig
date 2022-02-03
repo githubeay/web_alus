@@ -10,7 +10,7 @@
                 <th>First name</th>
                 <th>Last name</th>
                 <th>Email</th>
-                {# <th>Status</th> #}
+                <th>Status</th>
                 {# <th>Roles</th> #}
                 <th>Actions</th>
             </tr>
@@ -21,9 +21,23 @@
                     <td>{{user.firstName}}</td>
                     <td>{{user.lastName}}</td>
                     <td>{{user.email}}</td>
-                    {# <td>{{user.status}}</td> #}
+                    <td>
+                        {% if user.status %}
+                        <span class="text-success">Enabled</span>
+                        {% else %}
+                        <span class="text-danger">Disabled</span>
+                        {% endif %}
+                    </td>
                     {# <td>user.roles</td> #}
-                    <td></td>
+                    <td>
+                        <a title="Edit"><i class="fas fa-edit text-primary"></i></a>
+                        <a title="Delete"><i class="fas fa-trash-alt text-danger"></i></a>
+                        {% if user.status %}
+                        <a href="{{ path('admin_user_toggle_status', {'id':user.id}) }}" title="Disable"><i class="far fa-thumbs-down text-warning"></i></a>
+                        {% else %}
+                        <a href="{{ path('admin_user_toggle_status', {'id':user.id}) }}" title="Enable"><i class="far fa-thumbs-up text-success"></i></a>
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
