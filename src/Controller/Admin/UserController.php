@@ -46,4 +46,25 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute("admin_user_index");
     }
+
+    /**
+     * @Route("/delete/{id}", name="delete")
+     */
+    public function deleteUser(User $user, EntityManagerInterface $em): Response
+    {
+        // Deleting user
+        // User to delete is defined in the "automatic variables of the function"
+        // $user = $em->getRepository(User::class)->findOneBy(["id" => $id]);
+        try {
+            // Delete user
+            $em->remove($user);
+            $em->flush();
+            $this->addFlash("success", "User deleted.");
+        } catch (\Throwable $th) {
+            //throw $th;
+            $this->addFlash("danger", "Error deleting user: $th->getMessage()");
+        }
+
+        return $this->redirectToRoute("admin_user_index");
+    }
 }

@@ -67,7 +67,7 @@ class PostController extends AbstractController
         $em->remove($post);
         $em->flush();
 
-        $posts = $em->getRepository(Post::class)->findAll();
+        // $posts = $em->getRepository(Post::class)->findAll();
         // dd($posts);
         return $this->redirectToRoute("post");
     }
