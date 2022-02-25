@@ -44,6 +44,7 @@ class PostController extends AbstractController
                 $imageFile->move($imgPath, $imgName);
                 $post->setImage($imgName);
             }
+            $post->setAuthor($this->getUser());
             $em->persist($post);
             $em->flush();
             $this->addFlash("success", "Post has been added successfully!");

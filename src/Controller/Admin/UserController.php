@@ -3,11 +3,14 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Form\EditUserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Test\Constraint\RequestAttributeValueSame;
 
 /**
  * @Route("/admin/user", name="admin_user_")
@@ -48,9 +51,29 @@ class UserController extends AbstractController
     }
 
     /**
+     * @Route("/edit/{id}", name="edit")
+     */
+    public function edit(User $user, EntityManagerInterface $em, Request $request): Response
+    {
+        // Editing user
+        // $user = $em->getRepository(User::class)->findOneBy(["id" => $id]);
+        // Edit user
+        $form = $this->createForm(EditUserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($user);
+            $em->flush();
+            $this->addFlash("success", "User updated successfully!");
+            return $this->redirectToRoute('admin_user_index');
+        }
+
+        return $this->render("admin/user/edit.html.twig", ['form' => $form->createView()]);
+    }
+
+    /**
      * @Route("/delete/{id}", name="delete")
      */
-    public function deleteUser(User $user, EntityManagerInterface $em): Response
+    public function delete(User $user, EntityManagerInterface $em): Response
     {
         // Deleting user
         // User to delete is defined in the "automatic variables of the function"

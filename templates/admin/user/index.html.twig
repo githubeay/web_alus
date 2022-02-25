@@ -11,7 +11,7 @@
                 <th>Last name</th>
                 <th>Email</th>
                 <th>Status</th>
-                {# <th>Roles</th> #}
+                <th>Roles</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -28,9 +28,19 @@
                         <span class="text-danger">Disabled</span>
                         {% endif %}
                     </td>
-                    {# <td>user.roles</td> #}
                     <td>
-                        <a title="Edit"><i class="fas fa-edit text-primary"></i></a>
+                        {% for role in user.roles %}
+                            {% if role == "ROLE_ADMIN" %}
+                                Admin
+                            {% elseif role == "ROLE_MODERATOR" %}
+                                Moderator
+                            {% elseif role == "ROLE_AUTHOR" %}
+                                Author
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{{ path('admin_user_edit', {'id':user.id}) }}" title="Edit"><i class="fas fa-edit text-primary"></i></a>
                         <a href="{{ path('admin_user_delete', {'id':user.id}) }}" title="Delete"><i class="fas fa-trash-alt text-danger"></i></a>
                         {% if user.status %}
                         <a href="{{ path('admin_user_toggle_status', {'id':user.id}) }}" title="Disable"><i class="far fa-thumbs-down text-warning"></i></a>

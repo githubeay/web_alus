@@ -56,6 +56,7 @@
             {% endif %}
             <div class="row"><h2>{{post.title}}</h2></div>
             <div class="row"><p>{{post.content}}</p></div>
+            <div class="row"><p>{{post.author.lastName}}</p></div>
             <div class="row">
                 {# Génération dynamique de route (utilise le 'name' de la route en controlleur) #}
                 <a href="{{path('post_edit', {'id': post.id})}}" class="btn btn-primary">Edit</a>
